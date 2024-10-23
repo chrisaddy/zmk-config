@@ -1,0 +1,38 @@
+#!/usr/bin/env sh
+
+SIDE=$1
+
+sudo mkdir -p /mnt/nicenano-left/
+sudo mkdir -p /mnt/nicenano-right/
+
+mkdir -p tmp
+cp ~/Downloads/firmware.zip tmp/firmware.zip
+
+pushd tmp
+unzip firmware.zip
+
+if [ "$SIDE" = "left" ]; then
+    lsblk
+    echo "flashing left split, make sure it's plugged in"
+
+    read -p "choose device > " device
+    echo "using $device"
+
+    sudo mount -o rw,umask=000 "/dev/$device" /mnt/nicenano-left
+    sudo cp cradio_left-nice_nano_v2-zmk.uf2 /mnt/nicenano-left
+elif [ "$SIDE" = "right" ]; then
+    lsblk
+    echo "flashing right split, make sure it's plugged in"
+
+    read -p "choose device > " device
+    echo "using $device"
+
+    sudo mount -o rw,umask=000 "/dev/$device" /mnt/nicenano-right
+    sudo cp cradio_right-nice_nano_v2-zmk.uf2 /mnt/nicenano-right
+else
+    echo "error: side must be 'left' or 'right'"
+    exit 1
+fi
+
+popd
+rm -rf tmp/
