@@ -18,9 +18,11 @@
             tapping-term-ms = <220>;
             quick-tap-ms = <150>;
             require-prior-idle-ms = <100>;
-            bindings = <&kp>, <&kp>;
+            bindings = <&lt>, <&mo>;
         };
+
     };
+    
 
     conditional_layers {
         compatible = "zmk,conditional-layers";
@@ -44,7 +46,7 @@
         //│  Z       │  X       │  C       │  D       │  V       │   │  K       │  H       │ , <      │ . >      │ ?      │
             &kp Z      &kp X      &kp C      &kp D      &kp V          &kp K      &kp H      &kp COMMA  &kp DOT    &kp FSLH
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                            &lt 2 BSPC  &lt 1 ESC    &lt 3 ENTER  &kp SPACE
+                                            &ht 2 3 BSPC  &lt 1 ESC    &kp 3 ENTER  &kp SPACE
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
@@ -80,7 +82,7 @@
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                             &trans      &trans         &kp PLUS   &kp EQUAL
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
-            >;
+            >
         };
 
         navigation {
